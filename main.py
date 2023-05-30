@@ -6,12 +6,16 @@ all_nets = []
 
 for i in range(len(names_net)):
     num_maquinas = int(input(f"Número de máquinas do(a) {names_net[i]}: "))
-    all_nets.append(Rede(name = names_net[i], num_machines = num_maquinas))
+    all_nets.append(Rede(nome = names_net[i], num_maquinas = num_maquinas))
     
-all_nets.sort(key=lambda x: x.num_machines, reverse=True)
+all_nets.sort(key=lambda x: x.num_maquinas, reverse=True)
 
 for rede in all_nets:
-    num_0s = round(math.log2(rede.num_maquinas))
+    num_0s = math.ceil(math.log2(rede.num_maquinas))
+    num_1s = 32 - num_0s
+    mascara_bin = '1' * num_1s + '0' * num_0s
+    mascara_dec = [int(mascara_bin[i:i+8], 2) for i in range(0, len(mascara_bin), 8)]
+    rede.mascara = '.'.join(map(str, mascara_dec))
     
     
     

@@ -16,7 +16,7 @@ class Rede:
     def set_endereco_broadcast(self, endereco_broadcast: str):
         self.endereco_broadcast = endereco_broadcast
     
-    def set_mask(self, mascara: str):
+    def set_mascara(self, mascara: str):
         self.mascara = mascara
     
     def print_rede(self):
