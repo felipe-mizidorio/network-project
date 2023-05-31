@@ -21,7 +21,7 @@ for i in range(len(names_net)):
 all_nets.sort(key=lambda x: x.num_maquinas, reverse=True)
 
 for rede in all_nets:
-    num_0s = math.ceil(math.log2(rede.num_maquinas))
+    num_0s = math.ceil(math.log2(rede.num_maquinas + 2))
     num_1s = 32 - num_0s
     mascara_bin = '1' * num_1s + '0' * num_0s
     mascara_dec = [int(mascara_bin[i:i+8], 2) for i in range(0, len(mascara_bin), 8)]
