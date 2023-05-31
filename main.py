@@ -2,13 +2,10 @@ import math
 from rede import Rede
 
 def calcula_endereco(ip: list[int], soma: int) -> list[int]:
-    if(ip[3] + soma <= 255):
-        ip[3] += soma
-    else:
-        while ip[3] + soma > 255:
-            ip[2] += 1
-            soma -= 256-ip[3]
-            ip[3] = 0
+    ip[3] += soma
+    while ip[3] > 255:
+        ip[3] -= 256
+        ip[2] += 1    
     return ip
     
 names_net = ['Matriz_DMZ', 'Matriz_Hosts', 'Filial', 'Servidor']
@@ -33,7 +30,7 @@ for rede in all_nets:
     
     rede.endereco_rede = '.'.join(map(str, prox_end_livre))
     endereco_inicio = calcula_endereco(prox_end_livre.copy(), 1)
-    endereco_fim = calcula_endereco(endereco_inicio.copy(), num_end_livres - 2)
+    endereco_fim = calcula_endereco(prox_end_livre.copy(), num_end_livres - 2)
     rede.endereco_util = '.'.join(map(str, endereco_inicio)) + ' - ' + '.'.join(map(str, endereco_fim))
     rede.endereco_broadcast = '.'.join(map(str, calcula_endereco(prox_end_livre.copy(), num_end_livres - 1)))
     
