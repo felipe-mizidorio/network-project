@@ -5,7 +5,11 @@ def calcula_endereco(ip: list[int], soma: int) -> list[int]:
     ip[3] += soma
     while ip[3] > 255:
         ip[3] -= 256
-        ip[2] += 1    
+        if ip[2] >= 255:
+            ip[2] = 0
+            ip[1] += 1
+        else:
+            5000ip[2] += 1    
     return ip
     
 names_net = ['Matriz_DMZ', 'Matriz_Hosts', 'Filial', 'Servidor']
